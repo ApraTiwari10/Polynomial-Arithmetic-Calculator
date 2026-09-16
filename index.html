@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PolyCalc | Polynomial Arithmetic System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<header class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">∑</div>
+
+        <div>
+            <strong>Poly<span class="highlight">Calc</span></strong>
+            <small>Polynomial Arithmetic System</small>
+        </div>
+    </div>
+
+    <div class="nav-actions">
+
+        <div class="nav-badge">
+            ⚡ LINKED LIST ENGINE
+            <span class="status-dot"></span>
+        </div>
+
+        <div class="calculation-counter">
+            <small>CALCULATIONS</small>
+            <strong id="calculationCount">27</strong>
+        </div>
+
+        <button class="theme-btn" id="themeBtn">☼</button>
+        <button class="settings-btn">⚙</button>
+
+    </div>
+
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="eyebrow">ADVANCED POLYNOMIAL ARITHMETIC</p>
+
+        <h1>
+            Calculate <span>Smarter.</span>
+        </h1>
+
+        <p class="subtitle">
+            A professional polynomial arithmetic system powered by
+            Object-Oriented Programming and Singly Linked List architecture.
+        </p>
+
+        <div class="hero-tech-tags">
+            <span>OOP</span>
+            <span>C++ LOGIC</span>
+            <span>SINGLY LINKED LIST</span>
+        </div>
+
+    </div>
+
+    <div class="hero-graph">
+
+        <div class="graph-header">
+            <span class="graph-label">LIVE POLYNOMIAL VIEW</span>
+            <span class="graph-status">● ACTIVE</span>
+        </div>
+
+        <div class="graph-canvas-wrap">
+
+            <canvas id="heroGraphCanvas" width="520" height="260"></canvas>
+
+            <div class="graph-axis-label y-label">y ↑</div>
+            <div class="graph-axis-label x-label">x →</div>
+
+        </div>
+
+        <div class="graph-expression">
+
+            <span>ACTIVE FUNCTION</span>
+
+            <strong id="heroPolynomialText">
+                P(x) = 3x² + 2x + 1
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="calculator-grid">
+
+    <div class="polynomial-card">
+
+        <div class="card-header">
+
+            <div>
+                <span class="card-number">01</span>
+                <h2>Polynomial A</h2>
+            </div>
+
+            <span class="input-label">INPUT</span>
+
+        </div>
+
+        <label for="polyA">Enter polynomial expression</label>
+
+        <input
+            id="polyA"
+            type="text"
+            placeholder="e.g. 3x^2 + 2x + 1"
+            oninput="updateVisualizer()"
+        >
+
+        <div class="examples">
+
+            <span>Examples:</span>
+
+            <button onclick="setExample('polyA','3x^2 + 2x + 1')">
+                3x² + 2x + 1
+            </button>
+
+            <button onclick="setExample('polyA','5x^3 - 2x + 4')">
+                5x³ − 2x + 4
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="operation-card">
+
+        <h3>OPERATIONS</h3>
+
+        <div class="operations">
+
+            <button class="operation-btn" onclick="calculate('add')">
+                <span>+</span>
+                <div>
+                    <strong>ADD</strong>
+                    <small>Polynomial Sum</small>
+                </div>
+            </button>
+
+            <button class="operation-btn" onclick="calculate('subtract')">
+                <span>−</span>
+                <div>
+                    <strong>SUBTRACT</strong>
+                    <small>Polynomial Difference</small>
+                </div>
+            </button>
+
+            <button class="operation-btn" onclick="calculate('multiply')">
+                <span>×</span>
+                <div>
+                    <strong>MULTIPLY</strong>
+                    <small>Polynomial Product</small>
+                </div>
+            </button>
+
+            <button class="operation-btn" onclick="calculate('derivative')">
+                <span>∂</span>
+                <div>
+                    <strong>DERIVATIVE</strong>
+                    <small>Rate of Change</small>
+                </div>
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="polynomial-card">
+
+        <div class="card-header">
+
+            <div>
+                <span class="card-number">02</span>
+                <h2>Polynomial B</h2>
+            </div>
+
+            <span class="input-label">INPUT</span>
+
+        </div>
+
+        <label for="polyB">Enter polynomial expression</label>
+
+        <input
+            id="polyB"
+            type="text"
+            placeholder="e.g. 2x^2 + 5x + 3"
+        >
+
+        <div class="examples">
+
+            <span>Examples:</span>
+
+            <button onclick="setExample('polyB','2x^2 + 5x + 3')">
+                2x² + 5x + 3
+            </button>
+
+            <button onclick="setExample('polyB','x^3 + 4x - 2')">
+                x³ + 4x − 2
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="feature-bar">
+
+    <button class="feature-btn simplify" onclick="simplifyPolynomial()">
+        <span>♢</span>
+        <div>
+            <strong>SIMPLIFY</strong>
+            <small>Combine like terms</small>
+        </div>
+    </button>
+
+    <button class="feature-btn integrate" onclick="integratePolynomial()">
+        <span>∫</span>
+        <div>
+            <strong>INTEGRATE</strong>
+            <small>Find integral</small>
+        </div>
+    </button>
+
+    <button class="feature-btn divide" onclick="dividePolynomial()">
+        <span>÷</span>
+        <div>
+            <strong>DIVIDE</strong>
+            <small>Polynomial division</small>
+        </div>
+    </button>
+
+    <button class="feature-btn compare" onclick="comparePolynomials()">
+        <span>≡</span>
+        <div>
+            <strong>COMPARE</strong>
+            <small>Check equivalence</small>
+        </div>
+    </button>
+
+    <button class="feature-btn graph" onclick="showGraph()">
+        <span>⌁</span>
+        <div>
+            <strong>GRAPH</strong>
+            <small>Plot polynomial</small>
+        </div>
+    </button>
+
+    <button class="feature-btn export" onclick="exportResult()">
+        <span>⇩</span>
+        <div>
+            <strong>EXPORT</strong>
+            <small>Save as text</small>
+        </div>
+    </button>
+
+</section>
+
+<section class="dashboard-grid">
+
+    <div class="result-card">
+
+        <div class="result-top">
+            <span class="result-label">CALCULATION RESULT</span>
+            <span class="result-status">✓</span>
+        </div>
+
+        <h2 id="resultTitle">Polynomial Addition</h2>
+
+        <div class="result-box" id="result">
+            5x² + 7x + 4
+        </div>
+
+        <div class="calculation-info">
+
+            <div>
+                <span>ALGORITHM</span>
+                <strong>Linked List Merge</strong>
+            </div>
+
+            <div>
+                <span>DATA STRUCTURE</span>
+                <strong>Singly Linked List</strong>
+            </div>
+
+            <div>
+                <span>COMPLEXITY</span>
+                <strong>O(n + m)</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <span class="panel-label">LINKED LIST VISUALIZER</span>
+                <strong>(Polynomial A)</strong>
+            </div>
+
+            <span class="node-count" id="nodeCount">3 NODES</span>
+
+        </div>
+
+        <p class="panel-description">
+            Each polynomial term is represented as a node containing
+            coefficient and exponent.
+        </p>
+
+        <div class="linked-list" id="linkedList"></div>
+
+    </div>
+
+    <div class="panel algorithm-panel">
+
+        <div class="panel-heading">
+            <div>
+                <span class="panel-label">ALGORITHM STEPS</span>
+            </div>
+        </div>
+
+        <div class="algorithm-steps">
+
+            <div class="step">
+                <span>1</span>
+                <div>
+                    <strong>Read term from Polynomial A</strong>
+                    <small>3x²</small>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>2</span>
+                <div>
+                    <strong>Read term from Polynomial B</strong>
+                    <small>2x²</small>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>3</span>
+                <div>
+                    <strong>Multiply coefficients</strong>
+                    <small>2 = 2</small>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>4</span>
+                <div>
+                    <strong>Add exponents</strong>
+                    <small>3 + 2 = 5</small>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>5</span>
+                <div>
+                    <strong>Insert result node</strong>
+                    <small>↻</small>
+                </div>
+            </div>
+
+            <div class="step">
+                <span>6</span>
+                <div>
+                    <strong>Product Polynomial formed</strong>
+                    <small>✓</small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="bottom-grid">
+
+    <div class="panel statistics-panel">
+
+        <span class="panel-label">POLYNOMIAL STATISTICS</span>
+
+        <div class="statistics">
+
+            <div class="stat-card blue">
+                <span>⌁</span>
+                <small>DEGREE</small>
+                <strong id="degreeStat">2</strong>
+            </div>
+
+            <div class="stat-card purple">
+                <span>▣</span>
+                <small>TERMS</small>
+                <strong id="termsStat">3</strong>
+            </div>
+
+            <div class="stat-card cyan">
+                <span>≡</span>
+                <small>HEAD NODE</small>
+                <strong id="headStat">3x²</strong>
+            </div>
+
+            <div class="stat-card orange">
+                <span>⌘</span>
+                <small>TOTAL NODES</small>
+                <strong id="totalNodesStat">3</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="panel evaluate-panel">
+
+        <span class="panel-label">EVALUATE POLYNOMIAL A</span>
+
+        <label for="evalValue">Enter value of x</label>
+
+        <div class="evaluate-row">
+
+            <input id="evalValue" type="number" placeholder="2">
+
+            <button class="primary-btn" onclick="evaluatePolynomial()">
+                EVALUATE
+            </button>
+
+        </div>
+
+        <div class="evaluation-result">
+            Result:
+            <strong id="evaluationResult">P(2) = 17</strong>
+        </div>
+
+    </div>
+
+    <div class="panel history-panel">
+
+        <div class="panel-heading">
+
+            <span class="panel-label">CALCULATION HISTORY</span>
+
+            <button class="clear-btn" onclick="clearHistory()">CLEAR</button>
+
+        </div>
+
+        <div class="history" id="history"></div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+
+    <span>POLYCALC v2.0</span>
+    <span>OBJECT-ORIENTED POLYNOMIAL ENGINE</span>
+    <span>BUILT WITH LINKED LISTS</span>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
